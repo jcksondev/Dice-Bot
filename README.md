@@ -1,2 +1,2 @@
 # Dice-Bot
-Thanks to David we have to make this, you're welcome
+Thanks to David I had to make this, you're welcome
