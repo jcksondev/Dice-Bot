@@ -18,28 +18,36 @@ for (const file of commandFiles) {
 // Activated when the bot turns on, outputs a message to the console
 client.once('ready', () => {
     console.log(chalk.blue(`Logged in as ${client.user.tag}`));
+
+    client.user.setPresence({
+        activity: {
+            name: 'Lofi for Nat 20\'s',
+            type: 'STREAMING',
+            url: 'https://www.twitch.tv/chillhopmusic'
+        }
+    });
 });
 
 // Activated whenever a message is typed in any of the discord channels the bot has access to
 client.on('message', message => {
-    if(!message.content.startsWith(prefix) || message.author.bot) return;
+    if (!message.content.startsWith(prefix) || message.author.bot) return;
 
     const args = message.content.slice(prefix.length).split(/ +/);
     console.log(args);
     const commandName = args.shift().toLowerCase();
     console.log(args);
 
-    if(!client.commands.has(commandName)) return;
+    if (!client.commands.has(commandName)) return;
 
     const command = client.commands.get(commandName)
         || client.commands.find(cmd => cmd.aliases && cmd.aliases.includes(commandName));
 
-    if(!command) return;
+    if (!command) return;
 
-    if(command.args && !args.length) {
+    if (command.args && !args.length) {
         let reply = `You didn't provide any arguments, ${message.author}`;
 
-        if(command.usage) {
+        if (command.usage) {
             reply += `\nThe proper usage would be \`${prefix}${command.name} ${command.usage}\``;
         }
 
