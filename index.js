@@ -29,13 +29,11 @@ client.once('ready', () => {
 });
 
 // Activated whenever a message is typed in any of the discord channels the bot has access to
-client.on('message', message => {
+client.on('message', (message) => {
     if (!message.content.startsWith(prefix) || message.author.bot) return;
 
     const args = message.content.slice(prefix.length).split(/ +/);
-    console.log(args);
     const commandName = args.shift().toLowerCase();
-    console.log(args);
 
     if (!client.commands.has(commandName)) return;
 

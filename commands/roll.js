@@ -1,21 +1,20 @@
 const _ = require('lodash');
-/* TODO: Fix bug where having a space between the + in roll command doesnt factor in bonus, plus ur gay
- * Command $r 4d8+12
- * ['4', '8', '+', '12']
- */
 module.exports = {
     name: 'r',
     aliases: ['roll'],
     usage: 'd(number) <+-> [modifier]',
     execute(message, args) {
         let arg = args.toString().toLowerCase().replace(/\s/g, '');
-        if(arg[0] === 'd') arg = '1' + arg;
-        const splitArgs = arg.split('d');
+        if (arg[0] === 'd') arg = '1' + arg;
 
-        const quantity = parseInt(splitArgs[0], 10);
-        const type = parseInt(splitArgs[1].split(/[+-]/g)[0], 10) || 0;
-        const penalty = parseInt(splitArgs[1].split(/[-]/g)[1], 10) || 0;
-        const bonus = parseInt(splitArgs[1].split(/[+]/g)[1], 10) || 0;
+        const splitArgs = arg.split(/d/g);
+        splitArgs[1] = splitArgs[1].replace(/[,]/g, '');
+        
+        
+        const quantity = parseInt(splitArgs[0], 10); 
+        const type = parseInt(splitArgs[1].split(/[+-,]/g)[0]) || 0;
+        const penalty = parseInt(splitArgs[1].split(/[-,]/g)[1]) || 0;
+        const bonus = parseInt(splitArgs[1].split(/[+,]/g)[1]) || 0;
 
         const rolls = new Array(quantity).fill(0);
         let total = 0;
@@ -30,7 +29,7 @@ module.exports = {
             `**Rolls**: [ ${rolls.join(', ')} ] ${penalty ? `- ${penalty}` : ''} ${bonus ? `+ ${bonus}` : ''}\n**Total**: ${total}`,
         ];
 
-        if(!penalty && !bonus) {
+        if (!penalty && !bonus) {
             _.remove(returnMessages, (value, index) => {
                 return index === 1;
             });
