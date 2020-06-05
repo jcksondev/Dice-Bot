@@ -11,8 +11,8 @@ module.exports = {
         const roll = _.random(1, 20);
 
         // Creates two fields for potential arguments, scans for a - or + and creates a value dependant on what is found. Defaults to 0
-        const penalty = parseInt(command.split(/[-]/g)[1], 10) || 0; console.log(penalty);
-        const bonus = parseInt(command.split(/[+]/g)[1], 10) || 0; console.log(bonus);
+        const penalty = parseInt(command.split(/[-]/g)[1], 10) || 0;
+        const bonus = parseInt(command.split(/[+]/g)[1], 10) || 0;
 
         const total = roll - penalty + bonus;
 
