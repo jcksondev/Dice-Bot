@@ -1,6 +1,7 @@
 module.exports = {
     name: 'p',
     description: 'Prune up to 100 messages',
+    aliases: ['prune'],
     args: true,
     usage: '[1-100]',
     execute(message, args) {
