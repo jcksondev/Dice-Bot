@@ -5,6 +5,7 @@ const chalk = require('chalk');
 
 const client = new Discord.Client();
 client.commands = new Discord.Collection();
+client.initiative = require('./initiative.json');
 const commandFiles = fs.readdirSync('./commands').filter(file => file.endsWith('.js'));
 
 for (const file of commandFiles) {
@@ -53,7 +54,7 @@ client.on('message', (message) => {
     }
 
     try {
-        command.execute(message, args);
+        command.execute(message, args, client);
     } catch (error) {
         console.log(chalk.redBright('FATAL ERROR'), 'Something really bad happened!');
         console.error(error);
