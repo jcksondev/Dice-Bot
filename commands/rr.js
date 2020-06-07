@@ -8,8 +8,8 @@ module.exports = {
         const command = arg.replace(/[,]/g, '');
 
         // Checks input for 'a', 'adv', 'd', 'dis', creates a boolean value for adv/dis, and instantiates the rolls and total
-        const advantage = command.includes('adv') || command.includes('a');
-        const disadvantage = command.includes('dis') || command.includes('d');
+        const advantage = command.includes('adv');
+        const disadvantage = command.includes('dis');
         let roll = 0;
         let rolls = null;
         let total = 0;
