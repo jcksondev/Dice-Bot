@@ -6,6 +6,7 @@ const chalk = require('chalk');
 const client = new Discord.Client();
 client.commands = new Discord.Collection();
 client.initiative = require('./initiative.json');
+client.deathsave = require('./deathsave.json');
 const commandFiles = fs.readdirSync('./commands').filter(file => file.endsWith('.js'));
 
 for (const file of commandFiles) {
