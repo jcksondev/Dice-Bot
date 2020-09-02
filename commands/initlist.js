@@ -1,3 +1,4 @@
+const Discord = require('discord.js');
 /* eslint-disable prefer-const */
 module.exports = {
     name: 'initlist',
@@ -9,21 +10,23 @@ module.exports = {
             sortedArray.push(client.initiative[i]);
         }
 
-        function compare(a, b) {
-            const initA = a.initiative;
-            const initB = b.initiative;
-
-            let comparison = 0;
-            if(initA > initB) comparison = -1;
-            else if (initA < initB) comparison = 1;
-
-            return comparison;
-        }
-
-        console.log(sortedArray);
-        console.log(sortedArray.sort(compare));
-        sortedArray.forEach((val, index) => {
-            message.channel.send(`**${sortedArray[index].user}:** ${sortedArray[index].initiative}`);
+        sortedArray.sort(function(a, b) {
+            return parseFloat(b.initiative) - parseFloat(a.initiative);
         });
+
+        const initEmbed = new Discord.MessageEmbed()
+            .setColor('#52307c')
+            .setTitle('Initiative')
+            .setDescription('Please use this it took a while to code')
+            .attachFiles('./d20.jpg')
+            .setAuthor('The Chad Dice Roller Bot', 'attachment://d20.jpg', 'https://github.com/JcksonDev/Dice-Bot')
+            .setThumbnail('attachment://d20.jpg')
+            .setFooter(Date());
+
+        sortedArray.forEach(field => {
+            initEmbed.addField(field.user, field.initiative);
+        });
+
+        message.channel.send(initEmbed);
     }
 };
