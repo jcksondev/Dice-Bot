@@ -3,7 +3,7 @@ const _ = require('lodash');
 module.exports = {
     name: 'init',
     usage: ' + [Initiative Bonus]',
-    execute(message, args, client) {
+    async execute(message, args, client) {
         const arg = args.toString().toLowerCase().replace(/\s/g, '');
         const command = arg.replace(/[,]/g, '');
 
