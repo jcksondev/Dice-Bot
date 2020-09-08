@@ -21,7 +21,7 @@ module.exports = {
             .attachFiles('./d20.jpg')
             .setAuthor('The Chad Dice Roller Bot', 'attachment://d20.jpg', 'https://github.com/JcksonDev/Dice-Bot')
             .setThumbnail('attachment://d20.jpg')
-            .setFooter(Date());
+            .setTimestamp();
 
         sortedArray.forEach(field => {
             initEmbed.addField(field.user, field.initiative);
