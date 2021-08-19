@@ -2,7 +2,8 @@ module.exports = {
     name: 's',
     aliases: ['session'],
     usage: '[s]',
-    execute(message) {
+    async execute(message) {
+        await message.delete();
         message.channel.send('```diff\n- NEW SESSION - ```');
     },
 };
